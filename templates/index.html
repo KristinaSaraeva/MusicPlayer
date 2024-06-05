@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sound File Manager</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script type="text/javascript" src="/static/js/jquery-1.7.1.min.js"></script>
+</head>
+
+<body>
+    <h1 style="color:teal">Sound Files</h1>
+    <audio controls="controls" autoplay="autoplay"></audio>
+    <ul>
+        {% for file in files %}
+        <li><a href="javascript:void(0);" onclick="play('{{ file }}')">{{ file }}</a></li>
+        {% endfor %}
+    </ul>
+    <script type="text/javascript">
+        function play(file) {
+            $('audio').attr('src', 'static/music/' + file)
+        }
+    </script>
+    <h2 style=" color:teal">Upload Sound File</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+
+</html>
